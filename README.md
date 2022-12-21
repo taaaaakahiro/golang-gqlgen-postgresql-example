@@ -19,7 +19,7 @@ $ make run #run app
     3. ロジック実装 → ./graph/schema.resolvers.goの修正
 
 ## wiki
-https://github.com/taaaaakahiro/golang-gqlgen-postgresql-example/wiki
+    https://github.com/taaaaakahiro/golang-gqlgen-postgresql-example/wiki
 
 ## Offcial
     - https://gqlgen.com/getting-started/
