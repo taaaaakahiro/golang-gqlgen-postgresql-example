@@ -6,26 +6,28 @@ package graph
 
 import (
 	"context"
-	"fmt"
+	"log"
 
+	"github.com/taaaaakahiro/golang-gqlgen-postgresql-example/domain/entity"
 	"github.com/taaaaakahiro/golang-gqlgen-postgresql-example/graph/model"
 )
 
-// CreateTodo is the resolver for the createTodo field.
-func (r *mutationResolver) CreateTodo(ctx context.Context, input model.NewTodo) (*model.Todo, error) {
-	panic(fmt.Errorf("not implemented: CreateTodo - createTodo"))
-}
+// User is the resolver for the User field.
+func (r *queryResolver) User(ctx context.Context, id string) (*model.User, error) {
+	var user entity.User
+	err := r.DB.Database.Get(&user, "SELECT id, name FROM users WHERE id=$1", id)
+	if err != nil {
+		log.Fatal(err)
+	}
+	output := &model.User{
+		ID:   user.ID,
+		Name: user.Name,
+	}
 
-// Todos is the resolver for the todos field.
-func (r *queryResolver) Todos(ctx context.Context) ([]*model.Todo, error) {
-	panic(fmt.Errorf("not implemented: Todos - todos"))
+	return output, nil
 }
-
-// Mutation returns MutationResolver implementation.
-func (r *Resolver) Mutation() MutationResolver { return &mutationResolver{r} }
 
 // Query returns QueryResolver implementation.
 func (r *Resolver) Query() QueryResolver { return &queryResolver{r} }
 
-type mutationResolver struct{ *Resolver }
 type queryResolver struct{ *Resolver }
