@@ -22,4 +22,4 @@ $ make run #run app
     https://github.com/taaaaakahiro/golang-gqlgen-postgresql-example/wiki
 
 ## Offcial
-    - https://gqlgen.com/getting-started/
+    https://gqlgen.com/getting-started/
