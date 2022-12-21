@@ -14,4 +14,6 @@
     1. スキーマ定義 → ./graph/schema.graphqlsの修正
     2. gqlコマンド実行 → go gqlgen ./...
     3. ロジック実装 → ./graph/schema.resolvers.goの修正
-   
+
+## wiki
+    - https://github.com/taaaaakahiro/golang-gqlgen-postgresql-example/wiki
