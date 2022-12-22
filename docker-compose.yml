@@ -1,7 +1,27 @@
 version: '3'
 
 services:
+  # app:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   tty: true
+  #   stdin_open: true
+  #   volumes:
+  #     - .:/go/src
+  #   ports:
+  #     - 8080:8080
+  #   depends_on:
+  #     - db
+  #   environment:
+  #     PORT: 8080
+  #     POSTGRES_USER: root
+  #     POSTGRES_DB: example
+  #     POSTGRES_PASSWORD: password
+  #     POSTGRES_HOST: postgress
+
   db:
+    container_name: postgress
     image: postgres:14
     ports:
       - 5432:5432

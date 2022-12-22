@@ -15,8 +15,8 @@ type SQLdatabase struct {
 
 func NewSQLdatabase(cfg *config.Config) (*SQLdatabase, error) {
 	dsn := fmt.Sprintf(
-		"user=%s dbname=%s password=%s  host=localhost port=5432 sslmode=disable",
-		cfg.PostgresUser, cfg.PostgresDB, cfg.PostgresPassword)
+		"user=%s dbname=%s password=%s  host=%s port=5432 sslmode=disable",
+		cfg.PostgresUser, cfg.PostgresDB, cfg.PostgresPassword, cfg.PostgresHost)
 	db, err := sqlx.Connect("postgres", dsn)
 	if err != nil {
 		log.Fatalln(err)
