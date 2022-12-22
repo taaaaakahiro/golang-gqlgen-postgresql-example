@@ -25,5 +25,5 @@ $ make test
 ## wiki
     https://github.com/taaaaakahiro/golang-gqlgen-postgresql-example/wiki
 
-## Offcial
+## Docs
     https://gqlgen.com/getting-started/
