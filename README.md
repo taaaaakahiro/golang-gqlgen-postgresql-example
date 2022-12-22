@@ -3,7 +3,11 @@
 ## Run
 ```
 $ docker-compose up -d #run db
-$ make run #run app
+$ make run
+```
+## Test
+```
+$ make test
 ```
 
 ## Tree
