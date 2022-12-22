@@ -7,9 +7,9 @@ package graph
 // It serves as dependency injection for your app, add any dependencies you require here.
 
 import (
-	"github.com/taaaaakahiro/golang-gqlgen-postgresql-example/io"
+	"github.com/taaaaakahiro/golang-gqlgen-postgresql-example/infrastractue/persistence"
 )
 
 type Resolver struct {
-	DB *io.SQLdatabase
+	Repo *persistence.Repositories
 }

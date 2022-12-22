@@ -8,17 +8,17 @@ import (
 	"context"
 	"log"
 
-	"github.com/taaaaakahiro/golang-gqlgen-postgresql-example/domain/entity"
 	"github.com/taaaaakahiro/golang-gqlgen-postgresql-example/graph/model"
 )
 
 // User is the resolver for the User field.
 func (r *queryResolver) User(ctx context.Context, id string) (*model.User, error) {
-	var user entity.User
-	err := r.DB.Database.Get(&user, "SELECT id, name FROM users WHERE id=$1", id)
+	user, err := r.Repo.User.GetUser(ctx, id)
 	if err != nil {
-		log.Fatal(err)
+		log.Print("failed to get user")
+		return nil, err
 	}
+
 	output := &model.User{
 		ID:   user.ID,
 		Name: user.Name,

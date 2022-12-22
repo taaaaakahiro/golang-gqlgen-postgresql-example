@@ -6,6 +6,7 @@ import (
 	"net/http"
 
 	"github.com/taaaaakahiro/golang-gqlgen-postgresql-example/config"
+	"github.com/taaaaakahiro/golang-gqlgen-postgresql-example/infrastractue/persistence"
 
 	"github.com/99designs/gqlgen/graphql/handler"
 	"github.com/99designs/gqlgen/graphql/playground"
@@ -25,11 +26,16 @@ func main() {
 		log.Fatal(err)
 	}
 
+	repository, err := persistence.NewRepositories(db)
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	srv := handler.NewDefaultServer(
 		graph.NewExecutableSchema(
 			graph.Config{
 				Resolvers: &graph.Resolver{
-					DB: db,
+					Repo: repository,
 				},
 			},
 		),

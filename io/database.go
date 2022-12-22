@@ -10,7 +10,7 @@ import (
 )
 
 type SQLdatabase struct {
-	Database *sqlx.DB
+	SQLX *sqlx.DB
 }
 
 func NewSQLdatabase(cfg *config.Config) (*SQLdatabase, error) {
@@ -26,5 +26,5 @@ func NewSQLdatabase(cfg *config.Config) (*SQLdatabase, error) {
 		log.Fatal(err)
 	}
 
-	return &SQLdatabase{Database: db}, nil
+	return &SQLdatabase{SQLX: db}, nil
 }
