@@ -5,8 +5,8 @@ import (
 	"os"
 	"testing"
 
-	"github.com/taaaaakahiro/golang-gqlgen-postgresql-example/config"
-	"github.com/taaaaakahiro/golang-gqlgen-postgresql-example/io"
+	"github.com/taaaaakahiro/golang-gqlgen-postgresql-example/pkg/config"
+	"github.com/taaaaakahiro/golang-gqlgen-postgresql-example/pkg/io"
 )
 
 var (

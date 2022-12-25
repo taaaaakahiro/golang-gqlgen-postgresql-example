@@ -1,8 +1,8 @@
 package persistence
 
 import (
-	"github.com/taaaaakahiro/golang-gqlgen-postgresql-example/domain/repository"
-	"github.com/taaaaakahiro/golang-gqlgen-postgresql-example/io"
+	"github.com/taaaaakahiro/golang-gqlgen-postgresql-example/pkg/domain/repository"
+	"github.com/taaaaakahiro/golang-gqlgen-postgresql-example/pkg/io"
 )
 
 type Repositories struct {

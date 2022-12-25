@@ -6,7 +6,7 @@ import (
 
 	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq"
-	"github.com/taaaaakahiro/golang-gqlgen-postgresql-example/config"
+	"github.com/taaaaakahiro/golang-gqlgen-postgresql-example/pkg/config"
 )
 
 type SQLdatabase struct {

@@ -1,0 +1,26 @@
+
+
+type User {
+  id: ID!
+  name: String!
+}
+
+type Todo {
+  id: ID!
+  userId: User!
+  name: String!
+}
+
+input NewTodo {
+  text: String!
+  userId: String!
+}
+
+type Query {
+  User(id: String!): User
+}
+
+type Mutation {
+  createUser: User!
+  createTodo(input: NewTodo!): Todo!
+}
