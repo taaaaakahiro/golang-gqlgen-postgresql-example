@@ -9,14 +9,14 @@ import (
 
 	graph "github.com/taaaaakahiro/golang-gqlgen-postgresql-example/pkg/graph/generated"
 	"github.com/taaaaakahiro/golang-gqlgen-postgresql-example/pkg/graph/model"
-	"github.com/taaaaakahiro/golang-gqlgen-postgresql-example/pkg/graph/validation"
 )
 
 // CreateTodo is the resolver for the createTodo field.
 func (r *mutationResolver) CreateTodo(ctx context.Context, input model.NewTodo) (*model.Todo, error) {
-	if err := validation.ValidateInputModel(input); err != nil {
+	if err := validateInputModel(input); err != nil {
 		return nil, err
 	}
+
 	return nil, nil
 }
 

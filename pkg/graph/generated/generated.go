@@ -232,7 +232,7 @@ type Todo {
 
 input NewTodo {
   text: String! @validation(format: "required,len=10")
-  userId: String!
+  userId: String! @validation(format: "required")
 }
 
 type Mutation {
@@ -2703,9 +2703,27 @@ func (ec *executionContext) unmarshalInputNewTodo(ctx context.Context, obj inter
 			var err error
 
 			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("userId"))
-			it.UserID, err = ec.unmarshalNString2string(ctx, v)
+			directive0 := func(ctx context.Context) (interface{}, error) { return ec.unmarshalNString2string(ctx, v) }
+			directive1 := func(ctx context.Context) (interface{}, error) {
+				format, err := ec.unmarshalOString2ᚖstring(ctx, "required")
+				if err != nil {
+					return nil, err
+				}
+				if ec.directives.Validation == nil {
+					return nil, errors.New("directive validation is not implemented")
+				}
+				return ec.directives.Validation(ctx, obj, directive0, format)
+			}
+
+			tmp, err := directive1(ctx)
 			if err != nil {
-				return it, err
+				return it, graphql.ErrorOnPath(ctx, err)
+			}
+			if data, ok := tmp.(string); ok {
+				it.UserID = data
+			} else {
+				err := fmt.Errorf(`unexpected type %T from directive, should be string`, tmp)
+				return it, graphql.ErrorOnPath(ctx, err)
 			}
 		}
 	}

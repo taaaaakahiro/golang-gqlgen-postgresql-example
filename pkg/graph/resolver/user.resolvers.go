@@ -11,7 +11,6 @@ import (
 
 	graph "github.com/taaaaakahiro/golang-gqlgen-postgresql-example/pkg/graph/generated"
 	"github.com/taaaaakahiro/golang-gqlgen-postgresql-example/pkg/graph/model"
-	"github.com/taaaaakahiro/golang-gqlgen-postgresql-example/pkg/graph/validation"
 )
 
 // CreateUser is the resolver for the createUser field.
@@ -21,10 +20,6 @@ func (r *mutationResolver) CreateUser(ctx context.Context) (*model.User, error) 
 
 // User is the resolver for the User field.
 func (r *queryResolver) User(ctx context.Context, id string) (*model.User, error) {
-	if err := validation.ValidateInputModel(id); err != nil {
-		return nil, err
-	}
-
 	user, err := r.Repo.User.GetUser(ctx, id)
 	if err != nil {
 		log.Print("failed to get user")

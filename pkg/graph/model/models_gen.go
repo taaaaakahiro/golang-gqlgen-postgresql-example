@@ -4,7 +4,7 @@ package model
 
 type NewTodo struct {
 	Text   string `json:"text" validate:"required,len=10"`
-	UserID string `json:"userId"`
+	UserID string `json:"userId" validate:"required"`
 }
 
 type Todo struct {
