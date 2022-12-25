@@ -10,7 +10,8 @@ import (
 
 	"github.com/99designs/gqlgen/graphql/handler"
 	"github.com/99designs/gqlgen/graphql/playground"
-	"github.com/taaaaakahiro/golang-gqlgen-postgresql-example/pkg/graph"
+	graph "github.com/taaaaakahiro/golang-gqlgen-postgresql-example/pkg/graph/generated"
+	"github.com/taaaaakahiro/golang-gqlgen-postgresql-example/pkg/graph/resolver"
 	"github.com/taaaaakahiro/golang-gqlgen-postgresql-example/pkg/io"
 )
 
@@ -34,7 +35,7 @@ func main() {
 	srv := handler.NewDefaultServer(
 		graph.NewExecutableSchema(
 			graph.Config{
-				Resolvers: &graph.Resolver{
+				Resolvers: &resolver.Resolver{
 					Repo: repository,
 				},
 			},
