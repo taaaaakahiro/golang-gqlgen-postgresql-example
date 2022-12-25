@@ -26,4 +26,8 @@ $ make test
     https://github.com/taaaaakahiro/golang-gqlgen-postgresql-example/wiki
 
 ## Docs
+- gqlgen
     https://gqlgen.com/getting-started/
+- validator
+    https://zenn.dev/sntree/articles/b8585ee1ce219f
+    https://github.com/Sntree2mi8/gqlgen-validator-sample

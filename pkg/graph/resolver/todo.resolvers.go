@@ -6,15 +6,18 @@ package resolver
 
 import (
 	"context"
-	"fmt"
 
 	graph "github.com/taaaaakahiro/golang-gqlgen-postgresql-example/pkg/graph/generated"
 	"github.com/taaaaakahiro/golang-gqlgen-postgresql-example/pkg/graph/model"
+	"github.com/taaaaakahiro/golang-gqlgen-postgresql-example/pkg/graph/validation"
 )
 
 // CreateTodo is the resolver for the createTodo field.
 func (r *mutationResolver) CreateTodo(ctx context.Context, input model.NewTodo) (*model.Todo, error) {
-	panic(fmt.Errorf("not implemented: CreateTodo - createTodo"))
+	if err := validation.ValidateInputModel(input); err != nil {
+		return nil, err
+	}
+	return nil, nil
 }
 
 // Mutation returns graph.MutationResolver implementation.

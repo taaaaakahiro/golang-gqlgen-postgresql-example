@@ -40,6 +40,7 @@ type ResolverRoot interface {
 }
 
 type DirectiveRoot struct {
+	Validation func(ctx context.Context, obj interface{}, next graphql.Resolver, format *string) (res interface{}, err error)
 }
 
 type ComplexityRoot struct {
@@ -230,13 +231,17 @@ type Todo {
 }
 
 input NewTodo {
-  text: String!
+  text: String! @validation(format: "required,len=10")
   userId: String!
 }
 
 type Mutation {
   createTodo(input: NewTodo!): Todo!
 }
+
+directive @validation(
+  format: String
+) on INPUT_FIELD_DEFINITION
 `, BuiltIn: false},
 	{Name: "../schema/user.graphqls", Input: `type User {
   id: ID!
@@ -256,6 +261,21 @@ var parsedSchema = gqlparser.MustLoadSchema(sources...)
 // endregion ************************** generated!.gotpl **************************
 
 // region    ***************************** args.gotpl *****************************
+
+func (ec *executionContext) dir_validation_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+	var err error
+	args := map[string]interface{}{}
+	var arg0 *string
+	if tmp, ok := rawArgs["format"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("format"))
+		arg0, err = ec.unmarshalOString2ᚖstring(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["format"] = arg0
+	return args, nil
+}
 
 func (ec *executionContext) field_Mutation_createTodo_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
 	var err error
@@ -2657,9 +2677,27 @@ func (ec *executionContext) unmarshalInputNewTodo(ctx context.Context, obj inter
 			var err error
 
 			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("text"))
-			it.Text, err = ec.unmarshalNString2string(ctx, v)
+			directive0 := func(ctx context.Context) (interface{}, error) { return ec.unmarshalNString2string(ctx, v) }
+			directive1 := func(ctx context.Context) (interface{}, error) {
+				format, err := ec.unmarshalOString2ᚖstring(ctx, "required,len=10")
+				if err != nil {
+					return nil, err
+				}
+				if ec.directives.Validation == nil {
+					return nil, errors.New("directive validation is not implemented")
+				}
+				return ec.directives.Validation(ctx, obj, directive0, format)
+			}
+
+			tmp, err := directive1(ctx)
 			if err != nil {
-				return it, err
+				return it, graphql.ErrorOnPath(ctx, err)
+			}
+			if data, ok := tmp.(string); ok {
+				it.Text = data
+			} else {
+				err := fmt.Errorf(`unexpected type %T from directive, should be string`, tmp)
+				return it, graphql.ErrorOnPath(ctx, err)
 			}
 		case "userId":
 			var err error

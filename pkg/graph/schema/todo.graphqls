@@ -6,10 +6,14 @@ type Todo {
 }
 
 input NewTodo {
-  text: String!
+  text: String! @validation(format: "required,len=10")
   userId: String!
 }
 
 type Mutation {
   createTodo(input: NewTodo!): Todo!
 }
+
+directive @validation(
+  format: String
+) on INPUT_FIELD_DEFINITION
