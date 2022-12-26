@@ -1,23 +1,23 @@
-package customer
+package error
 
 type errorCode string
 
 const (
 	defaultErrorMsg string = "internal server error"
 
-	BadUserInput    errorCode = "BAD_USER_INPUT"
-	badUserInputMsg string    = "invalid input"
+	BadInput    errorCode = "BAD_INPUT"
+	BadInputMsg string    = "invalid input"
 
-	InternalServerError    errorCode = "INTERNAL_SERVER_ERROR"
-	internalServerErrorMsg string    = "internal server error"
+	ValidationError    errorCode = "VALIDATE_ERROR"
+	ValidationErrorMsg string    = "validate error"
 )
 
 func ErrorMessage(e errorCode) string {
 	switch e {
-	case BadUserInput:
-		return badUserInputMsg
-	case InternalServerError:
-		return internalServerErrorMsg
+	case BadInput:
+		return BadInputMsg
+	case ValidationError:
+		return ValidationErrorMsg
 	default:
 		return defaultErrorMsg
 	}
@@ -25,13 +25,13 @@ func ErrorMessage(e errorCode) string {
 
 func BadUserInputExtension(invalidFields map[string]string) map[string]any {
 	return map[string]any{
-		"code":          BadUserInput,
+		"code":          BadInput,
 		"invalidFields": invalidFields,
 	}
 }
 
 func InternalServerErrorExtension() map[string]any {
 	return map[string]any{
-		"code": InternalServerError,
+		"code": ValidationError,
 	}
 }

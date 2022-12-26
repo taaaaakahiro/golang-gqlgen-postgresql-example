@@ -233,7 +233,7 @@ type Todo {
 }
 
 input NewTodo {
-  text: String! @validation(format: "required,len=10")
+  text: String! @validation(format: "required")
   userId: String! @validation(format: "required")
 }
 
