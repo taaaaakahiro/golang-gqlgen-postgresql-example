@@ -1,6 +1,8 @@
 package resolver
 
 import (
+	"log"
+
 	validateErr "github.com/taaaaakahiro/golang-gqlgen-postgresql-example/pkg/graph/error"
 	"github.com/taaaaakahiro/golang-gqlgen-postgresql-example/pkg/graph/validation"
 	"github.com/vektah/gqlparser/v2/gqlerror"
@@ -8,6 +10,7 @@ import (
 
 func validateInputModel(m any) *gqlerror.Error {
 	validationErrors, err := validation.ValidateModel(m)
+	log.Println(validationErrors, err)
 	if err != nil {
 		return &gqlerror.Error{
 			Message:    validateErr.ErrorMessage(validateErr.ValidationError),
