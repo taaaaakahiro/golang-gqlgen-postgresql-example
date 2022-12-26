@@ -1,4 +1,4 @@
-package customerr
+package customer
 
 type errorCode string
 

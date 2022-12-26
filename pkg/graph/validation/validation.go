@@ -37,7 +37,7 @@ func ValidateModel(model any) (map[string]string, error) {
 			validationErrors[ve.StructNamespace()] = msgForTag(ve)
 		}
 
-		return validationErrors, nil
+		return validationErrors, err
 	}
 	return nil, nil
 }
