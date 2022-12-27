@@ -23,7 +23,7 @@ func ErrorMessage(e errorCode) string {
 	}
 }
 
-func BadUserInputExtension(invalidFields map[string]string) map[string]any {
+func BadInputExtension(invalidFields map[string]string) map[string]any {
 	return map[string]any{
 		"code":          BadInput,
 		"invalidFields": invalidFields,

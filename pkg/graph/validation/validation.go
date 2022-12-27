@@ -3,7 +3,7 @@ package validation
 import (
 	"fmt"
 
-	validateErr "github.com/taaaaakahiro/golang-gqlgen-postgresql-example/pkg/graph/validation/error"
+	validateErr "github.com/taaaaakahiro/golang-gqlgen-postgresql-example/pkg/graph/domain/error"
 	"github.com/vektah/gqlparser/v2/gqlerror"
 
 	"github.com/go-playground/validator/v10"
@@ -29,7 +29,7 @@ func ValidateInputModel(m any) *gqlerror.Error {
 	if len(validationErrors) > 0 {
 		return &gqlerror.Error{
 			Message:    validateErr.ErrorMessage(validateErr.BadInput),
-			Extensions: validateErr.BadUserInputExtension(validationErrors),
+			Extensions: validateErr.BadInputExtension(validationErrors),
 		}
 	}
 

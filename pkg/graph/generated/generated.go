@@ -12,7 +12,7 @@ import (
 
 	"github.com/99designs/gqlgen/graphql"
 	"github.com/99designs/gqlgen/graphql/introspection"
-	"github.com/taaaaakahiro/golang-gqlgen-postgresql-example/pkg/graph/model"
+	"github.com/taaaaakahiro/golang-gqlgen-postgresql-example/pkg/graph/domain/model"
 	gqlparser "github.com/vektah/gqlparser/v2"
 	"github.com/vektah/gqlparser/v2/ast"
 )
@@ -269,7 +269,7 @@ func (ec *executionContext) field_Mutation_createTodo_args(ctx context.Context, 
 	var arg0 model.NewTodo
 	if tmp, ok := rawArgs["input"]; ok {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("input"))
-		arg0, err = ec.unmarshalNNewTodo2githubᚗcomᚋtaaaaakahiroᚋgolangᚑgqlgenᚑpostgresqlᚑexampleᚋpkgᚋgraphᚋmodelᚐNewTodo(ctx, tmp)
+		arg0, err = ec.unmarshalNNewTodo2githubᚗcomᚋtaaaaakahiroᚋgolangᚑgqlgenᚑpostgresqlᚑexampleᚋpkgᚋgraphᚋdomainᚋmodelᚐNewTodo(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -374,7 +374,7 @@ func (ec *executionContext) _Mutation_createTodo(ctx context.Context, field grap
 	}
 	res := resTmp.(*model.Todo)
 	fc.Result = res
-	return ec.marshalNTodo2ᚖgithubᚗcomᚋtaaaaakahiroᚋgolangᚑgqlgenᚑpostgresqlᚑexampleᚋpkgᚋgraphᚋmodelᚐTodo(ctx, field.Selections, res)
+	return ec.marshalNTodo2ᚖgithubᚗcomᚋtaaaaakahiroᚋgolangᚑgqlgenᚑpostgresqlᚑexampleᚋpkgᚋgraphᚋdomainᚋmodelᚐTodo(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Mutation_createTodo(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -437,7 +437,7 @@ func (ec *executionContext) _Mutation_createUser(ctx context.Context, field grap
 	}
 	res := resTmp.(*model.User)
 	fc.Result = res
-	return ec.marshalNUser2ᚖgithubᚗcomᚋtaaaaakahiroᚋgolangᚑgqlgenᚑpostgresqlᚑexampleᚋpkgᚋgraphᚋmodelᚐUser(ctx, field.Selections, res)
+	return ec.marshalNUser2ᚖgithubᚗcomᚋtaaaaakahiroᚋgolangᚑgqlgenᚑpostgresqlᚑexampleᚋpkgᚋgraphᚋdomainᚋmodelᚐUser(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Mutation_createUser(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -484,7 +484,7 @@ func (ec *executionContext) _Query_User(ctx context.Context, field graphql.Colle
 	}
 	res := resTmp.(*model.User)
 	fc.Result = res
-	return ec.marshalOUser2ᚖgithubᚗcomᚋtaaaaakahiroᚋgolangᚑgqlgenᚑpostgresqlᚑexampleᚋpkgᚋgraphᚋmodelᚐUser(ctx, field.Selections, res)
+	return ec.marshalOUser2ᚖgithubᚗcomᚋtaaaaakahiroᚋgolangᚑgqlgenᚑpostgresqlᚑexampleᚋpkgᚋgraphᚋdomainᚋmodelᚐUser(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_User(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -718,7 +718,7 @@ func (ec *executionContext) _Todo_userId(ctx context.Context, field graphql.Coll
 	}
 	res := resTmp.(*model.User)
 	fc.Result = res
-	return ec.marshalNUser2ᚖgithubᚗcomᚋtaaaaakahiroᚋgolangᚑgqlgenᚑpostgresqlᚑexampleᚋpkgᚋgraphᚋmodelᚐUser(ctx, field.Selections, res)
+	return ec.marshalNUser2ᚖgithubᚗcomᚋtaaaaakahiroᚋgolangᚑgqlgenᚑpostgresqlᚑexampleᚋpkgᚋgraphᚋdomainᚋmodelᚐUser(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Todo_userId(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -3224,7 +3224,7 @@ func (ec *executionContext) marshalNID2string(ctx context.Context, sel ast.Selec
 	return res
 }
 
-func (ec *executionContext) unmarshalNNewTodo2githubᚗcomᚋtaaaaakahiroᚋgolangᚑgqlgenᚑpostgresqlᚑexampleᚋpkgᚋgraphᚋmodelᚐNewTodo(ctx context.Context, v interface{}) (model.NewTodo, error) {
+func (ec *executionContext) unmarshalNNewTodo2githubᚗcomᚋtaaaaakahiroᚋgolangᚑgqlgenᚑpostgresqlᚑexampleᚋpkgᚋgraphᚋdomainᚋmodelᚐNewTodo(ctx context.Context, v interface{}) (model.NewTodo, error) {
 	res, err := ec.unmarshalInputNewTodo(ctx, v)
 	return res, graphql.ErrorOnPath(ctx, err)
 }
@@ -3244,11 +3244,11 @@ func (ec *executionContext) marshalNString2string(ctx context.Context, sel ast.S
 	return res
 }
 
-func (ec *executionContext) marshalNTodo2githubᚗcomᚋtaaaaakahiroᚋgolangᚑgqlgenᚑpostgresqlᚑexampleᚋpkgᚋgraphᚋmodelᚐTodo(ctx context.Context, sel ast.SelectionSet, v model.Todo) graphql.Marshaler {
+func (ec *executionContext) marshalNTodo2githubᚗcomᚋtaaaaakahiroᚋgolangᚑgqlgenᚑpostgresqlᚑexampleᚋpkgᚋgraphᚋdomainᚋmodelᚐTodo(ctx context.Context, sel ast.SelectionSet, v model.Todo) graphql.Marshaler {
 	return ec._Todo(ctx, sel, &v)
 }
 
-func (ec *executionContext) marshalNTodo2ᚖgithubᚗcomᚋtaaaaakahiroᚋgolangᚑgqlgenᚑpostgresqlᚑexampleᚋpkgᚋgraphᚋmodelᚐTodo(ctx context.Context, sel ast.SelectionSet, v *model.Todo) graphql.Marshaler {
+func (ec *executionContext) marshalNTodo2ᚖgithubᚗcomᚋtaaaaakahiroᚋgolangᚑgqlgenᚑpostgresqlᚑexampleᚋpkgᚋgraphᚋdomainᚋmodelᚐTodo(ctx context.Context, sel ast.SelectionSet, v *model.Todo) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "the requested element is null which the schema does not allow")
@@ -3258,11 +3258,11 @@ func (ec *executionContext) marshalNTodo2ᚖgithubᚗcomᚋtaaaaakahiroᚋgolang
 	return ec._Todo(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalNUser2githubᚗcomᚋtaaaaakahiroᚋgolangᚑgqlgenᚑpostgresqlᚑexampleᚋpkgᚋgraphᚋmodelᚐUser(ctx context.Context, sel ast.SelectionSet, v model.User) graphql.Marshaler {
+func (ec *executionContext) marshalNUser2githubᚗcomᚋtaaaaakahiroᚋgolangᚑgqlgenᚑpostgresqlᚑexampleᚋpkgᚋgraphᚋdomainᚋmodelᚐUser(ctx context.Context, sel ast.SelectionSet, v model.User) graphql.Marshaler {
 	return ec._User(ctx, sel, &v)
 }
 
-func (ec *executionContext) marshalNUser2ᚖgithubᚗcomᚋtaaaaakahiroᚋgolangᚑgqlgenᚑpostgresqlᚑexampleᚋpkgᚋgraphᚋmodelᚐUser(ctx context.Context, sel ast.SelectionSet, v *model.User) graphql.Marshaler {
+func (ec *executionContext) marshalNUser2ᚖgithubᚗcomᚋtaaaaakahiroᚋgolangᚑgqlgenᚑpostgresqlᚑexampleᚋpkgᚋgraphᚋdomainᚋmodelᚐUser(ctx context.Context, sel ast.SelectionSet, v *model.User) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "the requested element is null which the schema does not allow")
@@ -3567,7 +3567,7 @@ func (ec *executionContext) marshalOString2ᚖstring(ctx context.Context, sel as
 	return res
 }
 
-func (ec *executionContext) marshalOUser2ᚖgithubᚗcomᚋtaaaaakahiroᚋgolangᚑgqlgenᚑpostgresqlᚑexampleᚋpkgᚋgraphᚋmodelᚐUser(ctx context.Context, sel ast.SelectionSet, v *model.User) graphql.Marshaler {
+func (ec *executionContext) marshalOUser2ᚖgithubᚗcomᚋtaaaaakahiroᚋgolangᚑgqlgenᚑpostgresqlᚑexampleᚋpkgᚋgraphᚋdomainᚋmodelᚐUser(ctx context.Context, sel ast.SelectionSet, v *model.User) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}

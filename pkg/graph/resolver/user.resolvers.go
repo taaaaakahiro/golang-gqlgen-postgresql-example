@@ -9,8 +9,9 @@ import (
 	"fmt"
 	"log"
 
+	gqlErr "github.com/taaaaakahiro/golang-gqlgen-postgresql-example/pkg/graph/domain/error"
+	"github.com/taaaaakahiro/golang-gqlgen-postgresql-example/pkg/graph/domain/model"
 	graph "github.com/taaaaakahiro/golang-gqlgen-postgresql-example/pkg/graph/generated"
-	"github.com/taaaaakahiro/golang-gqlgen-postgresql-example/pkg/graph/model"
 )
 
 // CreateUser is the resolver for the createUser field.
@@ -23,7 +24,11 @@ func (r *queryResolver) User(ctx context.Context, id string) (*model.User, error
 	user, err := r.Repo.User.GetUser(ctx, id)
 	if err != nil {
 		log.Print("failed to get user")
-		return nil, err
+		return nil, gqlErr.GQL500UserError()
+	}
+	if user == nil {
+		log.Print("user is not found")
+		return nil, gqlErr.GQL404UserError()
 	}
 
 	output := &model.User{
