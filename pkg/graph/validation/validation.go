@@ -2,30 +2,41 @@ package validation
 
 import (
 	"fmt"
-	"log"
-	"regexp"
+
+	validateErr "github.com/taaaaakahiro/golang-gqlgen-postgresql-example/pkg/graph/validation/error"
+	"github.com/vektah/gqlparser/v2/gqlerror"
 
 	"github.com/go-playground/validator/v10"
 )
 
 var (
 	Validate *validator.Validate
-
-	hhmmRegex = regexp.MustCompile(`^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$`)
 )
 
 func init() {
 	Validate = validator.New()
 
-	// register time validation
-	if err := Validate.RegisterValidation("HH:mm", func(fl validator.FieldLevel) bool {
-		return hhmmRegex.MatchString(fl.Field().String())
-	}, false); err != nil {
-		log.Fatalln("failed to register validation")
-	}
 }
 
-func ValidateModel(model any) (map[string]string, error) {
+func ValidateInputModel(m any) *gqlerror.Error {
+	validationErrors, err := validateModel(m)
+	if err != nil {
+		return &gqlerror.Error{
+			Message:    validateErr.ErrorMessage(validateErr.ValidationError),
+			Extensions: validateErr.InternalServerErrorExtension(),
+		}
+	}
+	if len(validationErrors) > 0 {
+		return &gqlerror.Error{
+			Message:    validateErr.ErrorMessage(validateErr.BadInput),
+			Extensions: validateErr.BadUserInputExtension(validationErrors),
+		}
+	}
+
+	return nil
+}
+
+func validateModel(model any) (map[string]string, error) {
 	if err := Validate.Struct(model); err != nil {
 		if _, ok := err.(*validator.InvalidValidationError); ok {
 			return nil, err

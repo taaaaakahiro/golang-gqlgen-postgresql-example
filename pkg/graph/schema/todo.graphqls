@@ -9,8 +9,8 @@ type Todo {
 }
 
 input NewTodo {
-  text: String! @validation(format: "required")
-  userId: String! @validation(format: "required")
+  text: String! @validation(format: "required,lte=5")
+  userId: String! @validation(format: "required,len=1")
 }
 
 type Mutation {
