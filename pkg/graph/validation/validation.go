@@ -11,10 +11,21 @@ import (
 
 var (
 	Validate *validator.Validate
+	// hhmmRegex = regexp.MustCompile(`^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$`)
 )
 
 func init() {
 	Validate = validator.New()
+
+	/***
+	custom validator
+	***/
+
+	// if err := Validate.RegisterValidation("HH:mm", func(fl validator.FieldLevel) bool {
+	// 	return hhmmRegex.MatchString(fl.Field().String())
+	// }, false); err != nil {
+	// 	log.Fatalln("failed to register validation")
+	// }
 
 }
 
