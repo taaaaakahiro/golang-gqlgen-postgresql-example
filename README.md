@@ -31,3 +31,4 @@ $ make test
 - validator
     https://zenn.dev/sntree/articles/b8585ee1ce219f
     https://github.com/Sntree2mi8/gqlgen-validator-sample
+    https://pkg.go.dev/github.com/go-playground/validator/v10#hdr-Singleton
